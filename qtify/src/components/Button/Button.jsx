@@ -1,9 +1,9 @@
 import React from 'react';
-// import './FeedbackButton.css'; // Module-scoped CSS
+import style from "./Button.module.css"
 
 const FeedbackButton = ({ text }) => {
   return (
-    <button className="feedbackButton">{text}</button>
+    <button className={style.button}>{text}</button>
   );
 };
 
