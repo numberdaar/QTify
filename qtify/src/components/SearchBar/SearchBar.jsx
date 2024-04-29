@@ -5,9 +5,9 @@ import style from "./SearchBar.module.css"
 
 const SearchBar = () => {
   return (
-    <div className={style.search}>
-      <input type="text" placeholder="Search a song of your choice" />
-      <button><img src={Searchlogo} alt="Search Icon" /></button>
+    <div className={style.main}>
+      <input className={style.search} type="text" placeholder="Search a song of your choice" />
+      <button className={style.imgicon}><img src={Searchlogo} alt="Search Icon" /></button>
     </div>
   );
 };
