@@ -1,4 +1,5 @@
 .logo{
-    padding-left: 32px;
-    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
