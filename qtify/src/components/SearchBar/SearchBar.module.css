@@ -1,5 +1,6 @@
 .main{
     height: 48px;
+    align-items: baseline;
 }
 .search{
     width: 502px;
