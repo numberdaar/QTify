@@ -9,6 +9,8 @@ const App = () => {
       <Navbar />
       <Hero /> 
       <CardSection title="Top Albums"  type="album"  />
+      <CardSection title="New Albums"  type="album"  />
+      <CardSection title="Song"  type="album"  />
     </div>
   );
 };

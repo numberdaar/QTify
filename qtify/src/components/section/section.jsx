@@ -61,22 +61,29 @@ import CardBox from '../Card/Card';
 import { Grid } from '@mui/material';
 import styled from "./section.module.css";
 
-const Section = ({ title }) => {
+const Section = ({ title,type }) => {
   const [carddata, setCarddata] = useState([]);
   const [collapse,setCollapse] =useState(true);
+  let url;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://qtify-backend-labs.crio.do/albums/top');
-        setCarddata(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+    if(title ==="Top Albums"){
+        url="https://qtify-backend-labs.crio.do/albums/top";
+    }
+    const fetchalbum = async(url)=>{
+        try {
+          const respone = await axios.get(url);
+          const topalbumdata= respone.data;
+          setCarddata(topalbumdata);
+          console.log(topalbumdata);
       }
-    };
+        catch(e){
+          console.log(e);
+        }
+      }
 
-    fetchData();
-  }, []);
+      useEffect(()=>{
+                fetchalbum(url);
+            },[url])
 
   return (
     <div>
