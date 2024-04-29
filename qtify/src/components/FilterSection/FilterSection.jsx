@@ -9,12 +9,6 @@ import { CircularProgress } from '@mui/material';
 
 const FilterSection = ({type, title, value, filteredData, handleChangeIndex}) => {
 
-    // function playSound(){
-    //     let sound = new Audio(audio)
-    //     sound.play()
-    // }
-
-
   return (
     <div className={styles.wrapper}>
        
