@@ -1,107 +1,60 @@
-// import React from "react";
-// import CardBox from "../Card/Card";
-// import styled from "./section.module.css";
-// import { useState } from "react";
-// import { useEffect } from "react";
-// import axios from 'axios';
-// import {Grid } from "@mui/material";
-//  export default function CardSection({title, type}){
-//     const [carddata,setCarddata] = useState([]);
-    
-//     let url;
+import React, { useState } from 'react'
+import { CircularProgress } from '@mui/material';
+import Card from "../Card/Card";
+import styles from "./Section.module.css"
+import Carousel from '../Carousel/Carousel';
 
-//     if(title ==="Top Albums"){
-//         url="https://qtify-backend-labs.crio.do/albums/top";
-//     }
-//     const fetchalbum = async(url)=>{
-//         try {
-//           const respone = await axios.get(url);
-//           const topalbumdata= respone.data;
-//           setCarddata(topalbumdata);
-//           console.log(topalbumdata);
-//       }
-//         catch(e){
-//           console.log(e);
-//         }
-//       } 
-//       useEffect(()=>{
-//         fetchalbum(url);
-//     },[url])
-//     const carouselToggle = false;
-//     return(
-//         <>
-//         <div className={styled.header}>
-//             <div>
-//                 <h3>{title}</h3>
-//                 {title !=="songs" && (carouselToggle ? (
-//                     <span onClick={()=> !carouselToggle}>show all</span>) : (
-//                     <span onClick={()=> !carouselToggle}>collapse</span>))}
-//             </div>
-//             <div>
-//                 {/* {carouselToggle ? (
-//                     <p>ankit</p>
-//                 ):( */}
-//                     <Grid Container spacing={3}>
-//                         {carddata.map((card) =>(
-//                             <Grid item key={carddata.id } xs ={6} md={2}>
-//                             <CardBox card = {card} />
-//                             </Grid>
-//                         ))}
-//                         </Grid>
-//                 {/* )} */}
-//             </div>
-//         </div>
-//         </>
-//     );
-//  }
-// Section.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import CardBox from '../Card/Card';
-import { Grid } from '@mui/material';
-import styled from "./section.module.css";
 
-const Section = ({ title,type }) => {
-  const [carddata, setCarddata] = useState([]);
-  const [collapse,setCollapse] =useState(true);
-  let url;
+const Section=({type,title,data,toggle=true})=> {
+    const[carouselToggle,setCarouselToggle]=useState(true);
 
-    if(title ==="Top Albums"){
-        url="https://qtify-backend-labs.crio.do/albums/top";
+    const handleToggle=()=>{
+        setCarouselToggle(!carouselToggle);
     }
-    const fetchalbum = async(url)=>{
-        try {
-          const respone = await axios.get(url);
-          const topalbumdata= respone.data;
-          setCarddata(topalbumdata);
-          console.log(topalbumdata);
-      }
-        catch(e){
-          console.log(e);
-        }
-      }
-
-      useEffect(()=>{
-                fetchalbum(url);
-            },[url])
 
   return (
     <div>
-        <div className={styled.head}>
+     {/* small top div with Name of section and "show all/collepse all" button */}
+        <div className={styles.sectionTop}>
             <h3>{title}</h3>
-            {title !=="songs" && (collapse ? (
-                        <h3 onClick={()=> setCollapse(!collapse)}>show all</h3>) : (
-                        <h3 onClick={()=> setCollapse(!collapse)}>collapse</h3>))}
+            <h4 onClick={handleToggle} className={styles.toggleText}>
+
+            {/*  check if we want to show the show/collapse button or not */}
+            {toggle?(
+                 carouselToggle?"Show All":"Collapse All"
+            ):(
+                <></>
+            )}
+            </h4>
         </div>
-      <Grid container spacing={3}>
-        {carddata.map((card) => (
-          <Grid item key={card.id} xs={12} sm={6} md={4} lg={3}>
-            <CardBox card={card} />
-          </Grid>
-        ))}
-      </Grid>
+        
+        {data.length?(
+            <div className={styles.sectionInnerWrapper}>
+             {/* here, if carouselToggle is false then show first condition here(means "show all albums"), else show second (means show "Collpased view with corousel")*/}
+            {!carouselToggle?(
+                <div className={styles.showAllWrapper}>
+                {data.map((album)=>(
+                    //show card here
+                    <Card data={album} type={type} key={album.id}/>
+                ))}
+                </div>
+            ):(
+              <div>
+              {/* show carousel here */}
+              <Carousel data={data} renderCardComponent={(data)=><Card data={data} type={type}/>}/>
+              </div>  
+            )}
+            </div>
+        ):(
+            <div className={styles.progressBar}>
+            {/* when no data recieved just show circular loading icon */}
+            <CircularProgress />
+            </div>
+        )}
+
     </div>
-  );
-};
+  )
+}
 
 export default Section;
+

@@ -1,26 +1,25 @@
-.hero {
-    width: 100%;
-    background-color: #121212; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.Hero {
+  height: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100vh; */
   
-  .heroimg {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .herotext {
-    text-align: center;
-    color: white;
-  }
-  
-  .hero-div h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .hero-div p {
-    font-size: 1.5rem;
-  }
+}
+.HeroTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 48px;
+  font-weight: 600;
+  margin: 20px;
+}
+.HeroTitle > h1{
+    height: 48px;
+    font-size: 32px;
+}
+.HeroImage {
+  height: 212px;
+  width: 212px;
+}

@@ -1,10 +1,12 @@
-import React from 'react';
-import style from "./Button.module.css"
+import React from "react";
+import styles from "./Button.module.css";
 
-const FeedbackButton = ({ text }) => {
-  return (
-    <button className={style.button}>{text}</button>
-  );
-};
+const Button=({children})=>{
+    return(
+        <button className={styles.button}>
+        {children}
+        </button>
+    )
+}
 
-export default FeedbackButton;
+export default Button;

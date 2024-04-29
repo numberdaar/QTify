@@ -1,13 +1,14 @@
-import React from 'react';
-import styles from "./Logo.module.css"
-import logo from "../../assets/logo.png";
+import React from "react";
+import styles from "./Logo.module.css";
+import LogoImg from "../../assets/logo.png";
 
-const Logo = () => {
-  return (
-    <div className={styles.logo}>
-      <img src={logo} alt="QTify Logo"  width= "67px" height= "34px" />
+const Logo=()=>{
+
+return(
+    <div className={styles.logoDiv}>
+        <img src={LogoImg} width={67} alt="logo"/>
     </div>
-  );
+)
 };
 
 export default Logo;

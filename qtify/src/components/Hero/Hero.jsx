@@ -1,17 +1,19 @@
-import React from 'react';
-import styles from "./Hero.module.css";
-import heroimage from "../../assets/hero_headphones.png"; 
-
+import React from 'react'
+import HeroImage from '../../assets/vibrating-headphone.png'
+import styles from './Hero.module.css'
 const Hero = () => {
   return (
-    <div className={styles.hero}>
-      <img src={heroimage} alt="Headphones" className={styles.heroimg} />
-      <div className={styles.herotext}>
-        <h1>100 Thousand Songs, ad-free</h1>
-        <p>Over thousands podcast episodes</p>
-      </div>
-    </div>
-  );
-};
+    <>  
+        <section className={styles.Hero}>
+            <div className={styles.HeroTitle}>
+                <h1>100 Thousand Songs, ad-free</h1>
+                <h1>Over thousands podcast episodes</h1>
+            </div>
+                <img className={styles.HeroImage} src={HeroImage} alt='headphone'/>
+        </section>
+    </>
+  )
+}
 
-export default Hero;
+export default Hero
+// rcfe: react component function export
